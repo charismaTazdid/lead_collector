@@ -125,6 +125,18 @@ const EntryLead = () => {
               onChange={e =>
                 setProductData({ ...productData, productName: e.target.value })
               }
+              label='Country'
+              color='secondary'
+              fullWidth
+              sx={{ my: 2 }}
+              required
+            />
+          </Box>
+          <Box flex={3}>
+            <TextField
+              onChange={e =>
+                setProductData({ ...productData, productName: e.target.value })
+              }
               label='Website Address'
               color='secondary'
               fullWidth
