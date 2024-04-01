@@ -1,12 +1,5 @@
 import { useState } from 'react'
-import {
-  Box,
-  Divider,
-  DialogContent,
-  DialogActions,
-  TextField,
-  Button
-} from '@mui/material'
+import { Box, Divider, DialogContent, DialogActions, TextField, Button, Typography, Menu, MenuItem, InputLabel, FormControl, Select } from '@mui/material'
 import AddBoxSharpIcon from '@mui/icons-material/AddBoxSharp'
 
 import { BootstrapDialog } from './Helper'
@@ -16,6 +9,7 @@ import { BootstrapDialog } from './Helper'
 import CancelIcon from '@mui/icons-material/Cancel'
 
 const EntryLead = () => {
+  const [age, setAge] = useState('');
   const [open, setOpen] = useState(false)
   const handleClickOpen = () => {
     setOpen(true)
@@ -23,41 +17,30 @@ const EntryLead = () => {
   const handleClose = () => {
     setOpen(false)
   }
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
+
+  const [anchorEl, setAnchorEl] = useState(null);
   // const dispatch = useDispatch();
 
-  const [productData, setProductData] = useState({
-    productName: '',
-    unit: '',
-    price: '',
-    currentStock: '',
-    imageUrl: '',
-    categoryId: ''
-  })
+  const [productData, setProductData] = useState({ productName: '', unit: '', price: '', currentStock: '', imageUrl: '', categoryId: '' })
 
   const handleSaveProduct = () => {
     const { productName, currentStock, price } = productData
     if (!productName || !currentStock || !price) {
       alert(
-        'দয়াকরে করে সব প্রয়োজনীয় ক্ষেত্রগুলি পূরণ করুন: পণ্যের নাম, বর্তমান স্টক এবং মূল্য৷'
+        'দয়াকরে করে সব প্রয়োজনীয় ক্ষেত্রগুলি পূরণ করুন'
       )
       return
     }
-
-    // const newProduct = { ...productData, categoryId: categoryId }
-    // dispatch(createProduct(categoryId, newProduct));
     setOpen(false)
-    setProductData({
-      productName: '',
-      unit: '',
-      price: '',
-      currentStock: '',
-      imageUrl: '',
-      categoryId: ''
-    })
+    setProductData({ productName: '', unit: '', price: '', currentStock: '', imageUrl: '', categoryId: '' })
   }
 
   return (
-    <Box>
+    <Box sx={{ minWidth: 900 }}>
       <Button
         variant='outlined'
         sx={{ ml: 3, mt: 3, mb: 3, p: 1, px: 3, width: 300, height: 50 }}
@@ -67,108 +50,52 @@ const EntryLead = () => {
       >
         Entry New Lead
       </Button>
-      <BootstrapDialog
-        onClose={handleClose}
-        aria-labelledby='customized-dialog-title'
-        open={open}
-      >
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'end',
-            alignItems: 'center',
-            mt: 1,
-            mr: 1.5
-          }}
-        >
-          <Button color='error'>
-            <CancelIcon
-              onClick={() => setOpen(false)}
-              sx={{ color: '#b8042b', fontSize: 38, cursor: 'pointer' }}
-            />
+      <BootstrapDialog onClose={handleClose} aria-labelledby='customized-dialog-title' open={open} >
+        <Box sx={{ width: 1000, display: 'flex', justifyContent: 'end', alignItems: 'center', mt: 1, mr: 1.5 }}>
+          <Button color='error' onClick={() => setOpen(false)}>
+            <CancelIcon sx={{ color: '#b8042b', fontSize: 38, cursor: 'pointer' }} />
           </Button>
         </Box>
 
         <Divider
-          sx={{
-            marginTop: 3,
-            color: '#2B2B52',
-            fontSize: '20px',
-            fontWeight: 'bold'
-          }}
-        >
+          sx={{ marginTop: 3, color: '#2B2B52', fontSize: '20px', fontWeight: 'bold' }}>
           Create New Lead
         </Divider>
         <DialogContent
-          sx={{
-            minWidth: '500px',
-            mb: 6,
-            mt: 2,
-            display: 'flex',
-            flexDirection: 'column'
-          }}
-        >
-          <Box flex={3}>
-            <TextField
-              onChange={e =>
-                setProductData({ ...productData, productName: e.target.value })
-              }
-              label='Company / Organization Name'
-              color='secondary'
-              fullWidth
-              sx={{ my: 2 }}
-              required
-            />
-          </Box>
-          <Box flex={3}>
-            <TextField
-              onChange={e =>
-                setProductData({ ...productData, productName: e.target.value })
-              }
-              label='Country'
-              color='secondary'
-              fullWidth
-              sx={{ my: 2 }}
-              required
-            />
-          </Box>
-          <Box flex={3}>
-            <TextField
-              onChange={e =>
-                setProductData({ ...productData, productName: e.target.value })
-              }
-              label='Website Address'
-              color='secondary'
-              fullWidth
-              sx={{ my: 2 }}
-              required
-            />
+          sx={{ mb: 6, mt: 2, display: 'flex', flexDirection: 'column' }}>
+
+          <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+            <TextField label='Company / Organization Name' color='secondary' fullWidth sx={{ my: 2, width: 450 }} required variant='filled' />
+            {/* Drop Down Menu */}
+            <FormControl sx={{ m: 1, width: 450 }} size="small">
+              <InputLabel id="demo-select-small-label">Age</InputLabel>
+              <Select
+                labelId="demo-select-small-label"
+                id="demo-select-small"
+                value={age}
+                label="Age"
+                onChange={handleChange}
+              >
+                <MenuItem value="">
+                  <em>None</em>
+                </MenuItem>
+                <MenuItem value={10}>Ten</MenuItem>
+                <MenuItem value={20}>Twenty</MenuItem>
+                <MenuItem value={30}>Thirty</MenuItem>
+              </Select>
+            </FormControl>
           </Box>
 
-          <Box flex={3}>
-            <TextField
-              onChange={e =>
-                setProductData({ ...productData, productName: e.target.value })
-              }
-              label='Primary Email'
-              color='secondary'
-              fullWidth
-              sx={{ my: 2 }}
-              required
-            />
+          <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+            <TextField label='Country' color='secondary' sx={{ my: 2, width: 450 }} required />
+            <TextField label='Website Address' color='secondary' sx={{ my: 2, width: 450 }} required />
           </Box>
-          <Box flex={3}>
-            <TextField
-              onChange={e =>
-                setProductData({ ...productData, productName: e.target.value })
-              }
-              label='Seconary Email'
-              color='secondary'
-              fullWidth
-              sx={{ my: 2 }}
-              required
-            />
+
+          <Box sx={{ display: "flex", justifyContent: "space-around" }}>
+            <TextField label='Primary Email' color='secondary' sx={{ my: 2, width: 450, }} required />
+            <TextField label='Seconary Email' color='secondary' sx={{ my: 2, width: 450 }} required />
           </Box>
+
           {/* Phone */}
           <Box flex={3}>
             <TextField

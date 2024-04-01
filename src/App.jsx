@@ -1,10 +1,10 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { Box } from '@mui/material'
-import NotFound from './Components/NotFound'
-import Dashboard from './Pages/Dashboard'
-import Auth from './Pages/Auth'
-import ViewLead from './Pages/ViewLead'
-import CollectLead from './Pages/CollectLead'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Box } from '@mui/material';
+import NotFound from './Components/NotFound';
+import Dashboard from './Pages/Dashboard';
+import Auth from './Pages/Auth';
+import ViewLead from './Pages/ViewLead';
+import CollectLead from './Pages/CollectLead';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { getCategories } from './Actions/categoryAction';
 // import { useEffect } from 'react';
@@ -34,4 +34,4 @@ const App = () => {
     </Box>
   )
 }
-export default App
+export default App;

@@ -1,4 +1,4 @@
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import CreateCategory from './Modal/CreateCategory'
 import EntryLead from './Modal/EntryLead'
 
@@ -12,4 +12,4 @@ const CreateLeadBody = () => {
   )
 }
 
-export default CreateLeadBody
+export default CreateLeadBody;
