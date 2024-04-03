@@ -20,8 +20,6 @@ const EntryLead = () => {
     setOpen(false)
   }
 
-
-
   const [anchorEl, setAnchorEl] = useState(null);
   // const dispatch = useDispatch();
 
@@ -41,6 +39,12 @@ const EntryLead = () => {
     othersInfo: ""
   });
 
+  const formatString = (str) => {
+    let formattedString = str.toLowerCase();
+    formattedString = formattedString.replace(/\s+/g, '').replace(/-/g, '');
+    return formattedString;
+  };
+
   const handleSaveLead = () => {
     const { companyName, website } = leadData;
     if (!companyName || !website) {
@@ -50,7 +54,7 @@ const EntryLead = () => {
       return
     }
     setOpen(false)
-   console.log(leadData)
+    console.log(leadData)
   };
 
   return (
@@ -92,7 +96,7 @@ const EntryLead = () => {
                   labelId="demo-select-small-label"
                   id="demo-select-small"
                   value={leadData.category}
-                  onChange={(e) => setLeadData({ ...leadData, category: e.target.value })}
+                  onChange={(e) => setLeadData({ ...leadData, category: formatString(e.target.value) })}
                 >
                   {
                     categories.map((category) => (
