@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { Box } from '@mui/material'
 import React from 'react'
 import Navbar from '../Components/Navbar'
@@ -13,4 +12,4 @@ const CollectLead = () => {
   )
 }
 
-export default CollectLead
+export default CollectLead;

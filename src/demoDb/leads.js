@@ -3,7 +3,7 @@ export const leads = [
         companyName: "BBC",
         category: "news", 
         country: "England",
-        website: "www.bbc.com",
+        website: "https://www.bbc.com",
         primaryEmail: "editor@bbc.com",
         secondaryEmail: "subeditor@bbc.com",
         phone: "0121312466",

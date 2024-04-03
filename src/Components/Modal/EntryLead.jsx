@@ -4,13 +4,14 @@ import AddBoxSharpIcon from '@mui/icons-material/AddBoxSharp';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { BootstrapDialog } from './Helper';
 import { categories } from '../../demoDb/categories';
+
 // import axios from 'axios';
 // import { useDispatch } from 'react-redux';
 // import { createProduct } from '../../Actions/productAction';
 
 const EntryLead = () => {
 
-  const [age, setAge] = useState('');
+
   const [open, setOpen] = useState(false)
   const handleClickOpen = () => {
     setOpen(true)
@@ -19,26 +20,38 @@ const EntryLead = () => {
     setOpen(false)
   }
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+
 
   const [anchorEl, setAnchorEl] = useState(null);
   // const dispatch = useDispatch();
 
-  const [productData, setProductData] = useState({ productName: '', unit: '', price: '', currentStock: '', imageUrl: '', categoryId: '' })
+  const [leadData, setLeadData] = useState({
+    companyName: "",
+    category: "",
+    country: "",
+    website: "",
+    primaryEmail: "",
+    secondaryEmail: "",
+    phone: "",
+    whatsApp: "",
+    socialUrl: "",
+    linkedinUrl: "",
+    employee: "",
+    employeeContact: "",
+    othersInfo: ""
+  });
 
-  const handleSaveProduct = () => {
-    const { productName, currentStock, price } = productData
-    if (!productName || !currentStock || !price) {
+  const handleSaveLead = () => {
+    const { companyName, website } = leadData;
+    if (!companyName || !website) {
       alert(
         'দয়াকরে করে সব প্রয়োজনীয় ক্ষেত্রগুলি পূরণ করুন'
       )
       return
     }
     setOpen(false)
-    setProductData({ productName: '', unit: '', price: '', currentStock: '', imageUrl: '', categoryId: '' })
-  }
+   console.log(leadData)
+  };
 
   return (
     <Box sx={{ minWidth: 900 }}>
@@ -68,27 +81,24 @@ const EntryLead = () => {
           <Box sx={{ display: "flex", justifyContent: "space-around" }}>
             <Box>
               <Typography> Company Name:</Typography>
-              <TextField color='success' fullWidth sx={{ my: 1, width: 420 }} required variant='filled' />
+              <TextField onChange={(e) => setLeadData({ ...leadData, companyName: e.target.value })} color='success' sx={{ my: 1, width: 420 }} required variant='filled' />
             </Box>
 
             {/* Drop Down Menu */}
             <Box>
               <Typography>Select Category</Typography>
               <FormControl sx={{ my: 1, width: 420, py: 1, }} size="medium" variant="filled">
-                {/* <InputLabel id="demo-select-small-label">Category </InputLabel> */}
                 <Select
                   labelId="demo-select-small-label"
                   id="demo-select-small"
-                  value={age}
-                  onChange={handleChange}
+                  value={leadData.category}
+                  onChange={(e) => setLeadData({ ...leadData, category: e.target.value })}
                 >
-
                   {
                     categories.map((category) => (
                       <MenuItem value={category.name} key={category.id}> {category.name} </MenuItem>
                     ))
                   }
-
                 </Select>
               </FormControl>
             </Box>
@@ -97,43 +107,42 @@ const EntryLead = () => {
           <Box sx={{ display: "flex", justifyContent: "space-around" }}>
 
             <Box>
-              <TextField variant='filled' hiddenLabel label='Country' color='success' sx={{ my: 1, py: 1, width: 420 }} required />
+              <TextField variant='filled' hiddenLabel label='Country' color='success' sx={{ my: 1, py: 1, width: 420 }} required onChange={(e) => setLeadData({ ...leadData, country: e.target.value })} />
             </Box>
             <Box>
-              {/* <Typography>Website Link: </Typography> */}
-              <TextField variant='filled' label='Website Address' color='success' sx={{ my: 1, width: 420, py: 1, }} required />
+              <TextField variant='filled' label='Website Address' color='success' sx={{ my: 1, width: 420, py: 1, }} required onChange={(e) => setLeadData({ ...leadData, website: e.target.value })} />
             </Box>
           </Box>
 
           <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-            <TextField label='Primary Email' variant='filled' color='success' sx={{ my: 1, width: 420, py: 1, }} />
-            <TextField label='Seconary Email (optional)' variant='filled' color='success' sx={{ my: 1, width: 420, py: 1, }} />
+            <TextField label='Primary Email' variant='filled' color='success' sx={{ my: 1, width: 420, py: 1, }} onChange={(e) => setLeadData({ ...leadData, primaryEmail: e.target.value })} />
+            <TextField label='Seconary Email (optional)' variant='filled' color='success' sx={{ my: 1, width: 420, py: 1, }} onChange={(e) => setLeadData({ ...leadData, secondaryEmail: e.target.value })} />
           </Box>
 
           {/* Phone */}
           <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-            <TextField label='Phone (optional)' color='success' fullWidth variant='filled' sx={{ my: 1, width: 420, py: 1, }} />
+            <TextField label='Phone (optional)' color='success' fullWidth variant='filled' sx={{ my: 1, width: 420, py: 1, }} onChange={(e) => setLeadData({ ...leadData, phone: e.target.value })} />
 
-            <TextField label='Whatsapp (optional)' color='success' variant='filled' fullWidth sx={{ my: 1, width: 420, py: 1, }} />
+            <TextField label='Whatsapp (optional)' color='success' variant='filled' fullWidth sx={{ my: 1, width: 420, py: 1, }} onChange={(e) => setLeadData({ ...leadData, whatsApp: e.target.value })} />
           </Box>
 
           {/* Social Media */}
           <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-            <TextField label='Facebook/insta/twitter url (optional)' color='success' fullWidth variant='filled' sx={{  width: 420, py: 1, }} />
+            <TextField label='Facebook/insta/twitter url (optional)' color='success' fullWidth variant='filled' sx={{ width: 420, py: 1, }} onChange={(e) => setLeadData({ ...leadData, socialUrl: e.target.value })} />
 
-            <TextField label='Linkedin url (optional)' color='success' variant='filled' fullWidth sx={{  width: 420, py: 1, }} />
+            <TextField label='Linkedin url (optional)' color='success' variant='filled' fullWidth sx={{ width: 420, py: 1, }} onChange={(e) => setLeadData({ ...leadData, linkedinUrl: e.target.value })} />
           </Box>
 
           {/* Manager/ Employee */}
           <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-            <TextField label='Employee / Manager Name (if found)' color='success' fullWidth variant='filled' sx={{  width: 420, py: 1, }} />
+            <TextField label='Employee / Manager Name (if found)' color='success' fullWidth variant='filled' sx={{ width: 420, py: 1, }} onChange={(e) => setLeadData({ ...leadData, employee: e.target.value })} />
 
-            <TextField label='Employee Social Link or Email (if found)' color='success' variant='filled' fullWidth sx={{  width: 420, py: 1, }} />
+            <TextField label='Employee Social Link or Email (if found)' color='success' variant='filled' fullWidth sx={{ width: 420, py: 1, }} onChange={(e) => setLeadData({ ...leadData, employeeContact: e.target.value })} />
           </Box>
 
           <Box sx={{ display: "flex", justifyContent: "space-around" }}>
 
-            <TextField label='Other Information (optional)' multiline rows={2} color='success' fullWidth variant='filled' sx={{  mx: 4, py: 1, }} />
+            <TextField label='Other Information (optional)' multiline rows={2} color='success' fullWidth variant='filled' sx={{ mx: 4, py: 1, }} onChange={(e) => setLeadData({ ...leadData, othersInfo: e.target.value })} />
 
           </Box>
         </DialogContent>
@@ -141,7 +150,7 @@ const EntryLead = () => {
 
         <DialogActions
           sx={{ display: 'flex', justifyContent: 'center', marginBottom: 2, marginTop: -3 }}  >
-          <Button autoFocus onClick={handleSaveProduct} style={saveBtn}>
+          <Button autoFocus onClick={handleSaveLead} style={saveBtn}>
             Save Lead
           </Button>
         </DialogActions>
