@@ -13,6 +13,12 @@ export const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
 export const DELETE_CATEGORY = 'DELETE_CATEGORY';
 export const FETCH_ALL_CATEGORY = 'FETCH_ALL';
 
+// FOR LEAD
+
+export const CREATE_LEAD = "CREATE_LEAD";
+export const GET_ALL_LEAD = "GET_ALL_LEAD";
+
+
 // FOR PRODUCT
 export const ADD_PRODUCT = "ADD_PRODUCT";
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";

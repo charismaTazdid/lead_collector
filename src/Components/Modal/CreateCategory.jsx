@@ -5,26 +5,27 @@ import DialogActions from '@mui/material/DialogActions'
 import { Box, Divider, TextField } from '@mui/material'
 import AddBoxSharpIcon from '@mui/icons-material/AddBoxSharp'
 import { BootstrapDialog } from './Helper'
-// import { createCategory } from '../../Actions/categoryAction';
-// import { useDispatch } from 'react-redux';
+import { createCategory } from '../../Actions/categoryAction.js';
+import { useDispatch } from 'react-redux';
 import CancelIcon from '@mui/icons-material/Cancel'
 
 const CreateCategory = () => {
-  const [open, setOpen] = useState(false)
+
+  const [open, setOpen] = useState(false);
   const handleClickOpen = () => {
     setOpen(true)
-  }
+  };
   const handleClose = () => {
     setOpen(false)
-  }
-  // const dispatch = useDispatch()
+  };
+  const dispatch = useDispatch();
 
-  const [categoryName, setCategoryName] = useState('')
+  const [categoryName, setCategoryName] = useState('');
 
   const handleSaveCategory = () => {
-    // dispatch(createCategory(categoryName));
+    dispatch(createCategory(categoryName));
     setOpen(false)
-  }
+  };
 
   return (
     <Box>
@@ -43,15 +44,7 @@ const CreateCategory = () => {
         open={open}
       >
         {/* Cancle Icon */}
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'end',
-            alignItems: 'center',
-            mt: 1,
-            mr: 1.5
-          }}
-        >
+        <Box sx={{ display: 'flex', justifyContent: 'end', alignItems: 'center', mt: 1, mr: 1.5 }}>
           <Button color='error'>
             <CancelIcon
               onClick={() => setOpen(false)}
@@ -64,7 +57,7 @@ const CreateCategory = () => {
         </Divider>
         <DialogContent sx={{ minWidth: '310px', mt: 6, mb: 6, mx: 5 }}>
           <TextField
-            onChange={e => setCategoryName(e.target.value)}
+            onChange={(e) => setCategoryName(e.target.value)}
             label='New Category'
             fullWidth
             sx={{ color: '#192A56' }}

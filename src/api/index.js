@@ -11,15 +11,12 @@ API.interceptors.request.use((req) => {
 });
 
 // AUTH
-export const login = (userData) => API.post("/system_user_auth/login", userData);
+export const createUser = () => API.post('/auth/createUser');
+export const login = (userData) => API.post("/auth/login", userData);
+export const getAllUser = () => API.get('/auth/getAllUser');
 
 // Category
-export const createCategory = (categoryName) => API.post("/category/create", { categoryName });
-export const getAllCategory = () => API.get("/category/getAll");
-export const deleteCategory = (catId) => API.delete(`/category/delete/${catId}`);
+export const createCategory = (categoryName) => API.post("/category/createCategory", { categoryName });
+export const getAllCategory = () => API.get("/category/getAllCategory");
+// export const deleteCategory = (catId) => API.delete(`/category/delete/${catId}`);
 
-
-// SYSTEM USER
-export const createSystemUser = (userData) => API.post(`/system_user_auth/create`, userData)
-export const getAllSystemUser = () => API.get('/manage_user/allUser');
-export const deleteSystemUser = (id) => API.delete(`/manage_user/delete/${id}`);

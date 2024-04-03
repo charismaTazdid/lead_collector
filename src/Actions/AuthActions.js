@@ -5,7 +5,7 @@ export const Login = (userData, navigate, setOpenAlert) => async (dispatch) => {
     try {
         const { data } = await api.login(userData)
         dispatch({ type: LOGIN, data });
-        navigate("/dashboard");
+        navigate("/create-lead");
 
     } catch (err) {
         dispatch({ type: ERROR, payload: `${err.response.data.status} !  ${err.response.data.message}` })

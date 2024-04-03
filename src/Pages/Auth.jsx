@@ -1,35 +1,25 @@
-import { useState } from 'react'
-import {
-  Alert,
-  AlertTitle,
-  Box,
-  Button,
-  IconButton,
-  InputAdornment,
-  Paper,
-  TextField,
-  
-} from '@mui/material'
-import logo from '../images/logo.png'
-import VisibilityIcon from '@mui/icons-material/Visibility'
-import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
-// import { Login } from '../Actions/AuthActions'
-import { useNavigate } from 'react-router-dom'
-// import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react';
+import { Alert, AlertTitle, Box, Button, IconButton, InputAdornment, Paper, TextField } from '@mui/material';
+import logo from '../images/logo.png';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { Login } from '../Actions/AuthActions';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux'
 
 const Auth = () => {
-  const navigate = useNavigate()
-  //   const dispatch = useDispatch()
-  const [openAlert, setOpenAlert] = useState(false)
-  const [isEmptyField, setIsEmptyField] = useState(false)
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const [openAlert, setOpenAlert] = useState(false);
+  const [isEmptyField, setIsEmptyField] = useState(false);
 
-  //   const { isError, errorMessage } = useSelector(state => state.auth)
-  const isError = false
-  const errorMessage = 'no Error now'
+  const { isError, errorMessage } = useSelector(state => state.auth)
+  // const isError = false;
+  // const errorMessage = 'no Error now';
 
   const [showPassword, setShowPassword] = useState(false)
   const [userData, setUserData] = useState({ userName: '', password: '' })
-  function handleKeyDown (event) {
+  function handleKeyDown(event) {
     if (event.key === 'Enter') {
       document.getElementById('login').click()
     }
@@ -44,7 +34,7 @@ const Auth = () => {
       setOpenAlert(true)
     } else {
       setIsEmptyField(false)
-      //   dispatch(Login(userData, navigate, setOpenAlert))
+      dispatch(Login(userData, navigate, setOpenAlert))
     }
   }
 
@@ -52,16 +42,8 @@ const Auth = () => {
     setShowPassword(!showPassword)
   }
   return (
-    <Box
-      height={'100vh'}
-      sx={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        // width: { md: 1280, xs: 380 }
-      }}
-    >
+    <Box height={'100vh'} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+
       {isError && openAlert ? (
         <Box sx={{ minWidth: 350 }}>
           <Alert
@@ -156,36 +138,18 @@ const Auth = () => {
           }}
         />
         <br />
-        <Box
-          mt={4}
-          mb={7}
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            flexDirection: 'column'
-          }}
-        >
-          <Button
-            id='login'
-            variant='contained'
-            fullWidth
-            onClick={handleLogin}
-          >
+        <Box mt={4} mb={7} sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}  >
+          <Button id='login' variant='contained' fullWidth onClick={handleLogin} >
             Log In
           </Button>
 
-          <Button onClick={()=> navigate("/create-lead")} variant='contained' color='secondary' sx={{ mt: 2 }}>
+          <Button onClick={() => navigate("/create-lead")} variant='contained' color='secondary' sx={{ mt: 2 }}>
             Get In
           </Button>
         </Box>
 
         <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}
-        >
+          sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
           {/* <Box
             sx={{
               display: 'flex',
