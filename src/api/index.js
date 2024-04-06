@@ -20,3 +20,6 @@ export const createCategory = (categoryName) => API.post("/category/createCatego
 export const getAllCategory = () => API.get("/category/getAllCategory");
 // export const deleteCategory = (catId) => API.delete(`/category/delete/${catId}`);
 
+// Leads
+export const createLead = (leadData) => API.post("/lead/createLead", leadData);
+export const getAllLead = () => API.get("/lead/getAllLead");

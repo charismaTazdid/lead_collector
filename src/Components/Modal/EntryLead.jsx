@@ -4,9 +4,10 @@ import AddBoxSharpIcon from '@mui/icons-material/AddBoxSharp';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { BootstrapDialog } from './Helper';
 import { categories } from '../../demoDb/categories';
+import { createLead } from '../../Actions/leadAction';
 
 // import axios from 'axios';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import { createProduct } from '../../Actions/productAction';
 
 const EntryLead = () => {
@@ -21,23 +22,9 @@ const EntryLead = () => {
   }
 
   const [anchorEl, setAnchorEl] = useState(null);
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  const [leadData, setLeadData] = useState({
-    companyName: "",
-    category: "",
-    country: "",
-    website: "",
-    primaryEmail: "",
-    secondaryEmail: "",
-    phone: "",
-    whatsApp: "",
-    socialUrl: "",
-    linkedinUrl: "",
-    employee: "",
-    employeeContact: "",
-    othersInfo: ""
-  });
+  const [leadData, setLeadData] = useState({ companyName: "", category: "", country: "", website: "", primaryEmail: "", secondaryEmail: "", phone: "", whatsApp: "", socialUrl: "", linkedinUrl: "", employee: "", employeeContact: "", othersInfo: "" });
 
   const formatString = (str) => {
     let formattedString = str.toLowerCase();
@@ -48,13 +35,12 @@ const EntryLead = () => {
   const handleSaveLead = () => {
     const { companyName, website } = leadData;
     if (!companyName || !website) {
-      alert(
-        'দয়াকরে করে সব প্রয়োজনীয় ক্ষেত্রগুলি পূরণ করুন'
-      )
+      alert('দয়াকরে করে সব প্রয়োজনীয় ক্ষেত্রগুলি পূরণ করুন');
       return
     }
-    setOpen(false)
-    console.log(leadData)
+    dispatch(createLead(leadData));
+    setOpen(false);
+    // console.log(leadData)
   };
 
   return (
