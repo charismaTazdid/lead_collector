@@ -1,36 +1,34 @@
-import { useState } from 'react';
-import { Box, Divider, DialogContent, DialogActions, TextField, Button, Typography, Menu, MenuItem, InputLabel, FormControl, Select } from '@mui/material';
+import { useEffect, useState } from 'react';
+import { Box, Divider, DialogContent, DialogActions, TextField, Button, Typography, Menu, MenuItem, FormControl, Select } from '@mui/material';
 import AddBoxSharpIcon from '@mui/icons-material/AddBoxSharp';
 import CancelIcon from '@mui/icons-material/Cancel';
 import { BootstrapDialog } from './Helper';
-import { categories } from '../../demoDb/categories';
 import { createLead } from '../../Actions/leadAction';
-
-// import axios from 'axios';
-import { useDispatch } from 'react-redux';
-// import { createProduct } from '../../Actions/productAction';
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllCategory } from '../../Actions/categoryAction';
 
 const EntryLead = () => {
 
+  const { categories } = useSelector((state) => state.categories)
 
   const [open, setOpen] = useState(false)
   const handleClickOpen = () => {
     setOpen(true)
-  }
+  };
   const handleClose = () => {
     setOpen(false)
-  }
+  };
 
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
 
-  const [leadData, setLeadData] = useState({ companyName: "", category: "", country: "", website: "", primaryEmail: "", secondaryEmail: "", phone: "", whatsApp: "", socialUrl: "", linkedinUrl: "", employee: "", employeeContact: "", othersInfo: "" });
+  const [leadData, setLeadData] = useState({ companyName: "", categoryName: "", country: "", website: "", primaryEmail: "", secondaryEmail: "", phone: "", whatsApp: "", socialUrl: "", linkedinUrl: "", employee: "", employeeContact: "", othersInfo: "" });
 
-  const formatString = (str) => {
-    let formattedString = str.toLowerCase();
-    formattedString = formattedString.replace(/\s+/g, '').replace(/-/g, '');
-    return formattedString;
-  };
+  // const formatString = (str) => {
+  //   let formattedString = str.toLowerCase();
+  //   formattedString = formattedString.replace(/\s+/g, '').replace(/-/g, '');
+  //   return formattedString;
+  // };
 
   const handleSaveLead = () => {
     const { companyName, website } = leadData;
@@ -40,8 +38,11 @@ const EntryLead = () => {
     }
     dispatch(createLead(leadData));
     setOpen(false);
-    // console.log(leadData)
   };
+
+  useEffect(() => {
+    dispatch(getAllCategory())
+  }, []);
 
   return (
     <Box sx={{ minWidth: 900 }}>
@@ -81,12 +82,13 @@ const EntryLead = () => {
                 <Select
                   labelId="demo-select-small-label"
                   id="demo-select-small"
-                  value={leadData.category}
-                  onChange={(e) => setLeadData({ ...leadData, category: formatString(e.target.value) })}
+                  value={leadData.categoryName}
+                  label={leadData.categoryName}
+                  onChange={(e) => setLeadData({ ...leadData, categoryName: e.target.value })}
                 >
                   {
                     categories.map((category) => (
-                      <MenuItem value={category.name} key={category.id}> {category.name} </MenuItem>
+                      <MenuItem  value={category.categoryName} key={category._id}> {category.categoryName} </MenuItem>
                     ))
                   }
                 </Select>
