@@ -12,11 +12,8 @@ const Auth = () => {
   const dispatch = useDispatch();
   const [openAlert, setOpenAlert] = useState(false);
   const [isEmptyField, setIsEmptyField] = useState(false);
-
   const { isError, errorMessage } = useSelector(state => state.auth)
-  // const isError = false;
-  // const errorMessage = 'no Error now';
-
+ 
   const [showPassword, setShowPassword] = useState(false)
   const [userData, setUserData] = useState({ userName: '', password: '' })
   function handleKeyDown(event) {
