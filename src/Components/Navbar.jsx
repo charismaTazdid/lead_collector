@@ -9,13 +9,13 @@ import MenuIcon from '@mui/icons-material/Menu'
 import Container from '@mui/material/Container'
 import Button from '@mui/material/Button'
 import MenuItem from '@mui/material/MenuItem'
-// import { useDispatch } from 'react-redux';
-// import { LOGOUT } from '../constant/actionTypes'
+import { useDispatch } from 'react-redux';
+import { LOGOUT } from '../constant/actionTypes';
 
 const pages = ['Create Lead', 'View Lead', 'Dashboard']
 
 const Navbar = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const [anchorElNav, setAnchorElNav] = useState(null)
   const userData = JSON.parse(localStorage.getItem('profile'))
 
@@ -38,13 +38,13 @@ const Navbar = () => {
   }
 
   const handleLogout = () => {
-    // dispatch({ type: LOGOUT })
+    dispatch({ type: LOGOUT })
     navigate('/')
   }
 
   return (
     <AppBar
-      position='static'
+      position='sticky'
       sx={{ backgroundColor: '#121212', width: '100%' }}
     >
       <Container maxWidth='xl'>

@@ -32,7 +32,7 @@ const CreateCategory = () => {
       <Button
         variant='outlined'
         sx={{ ml: 3, mt: 3, mb: 3, p: 1, px: 3, width: 300, height: 50 }}
-        style={{ color: 'black', border: '1px solid black' }}
+        style={{ color: '#F3B63A', border: '1px solid #F3B63A', outline: 'none' }}
         onClick={handleClickOpen}
         endIcon={<AddBoxSharpIcon />}
       >

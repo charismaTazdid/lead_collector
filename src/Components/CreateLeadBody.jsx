@@ -4,9 +4,8 @@ import EntryLead from './Modal/EntryLead'
 
 const CreateLeadBody = () => {
   return (
-    <Box>
+    <Box sx={{ backgroundColor: "#2F363F", minHeight: '90dvh' }}>
       <CreateCategory />
-      {/* Entry New Lead Information */}
       <EntryLead />
     </Box>
   )

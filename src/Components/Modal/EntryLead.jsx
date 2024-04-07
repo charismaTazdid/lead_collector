@@ -48,8 +48,8 @@ const EntryLead = () => {
     <Box sx={{ minWidth: 900 }}>
       <Button
         variant='outlined'
-        sx={{ ml: 3, mt: 3, mb: 3, p: 1, px: 3, width: 300, height: 50 }}
-        style={{ color: '#0A3D62', border: '1px solid #0A3D62' }}
+        sx={{ ml: 3, mt: 3, mb: 3, p: 1, px: 3, width: 350, height: 50, }}
+        style={{ color: 'black', fontWeight: "bold", border: '1px solid #F3B63A', backgroundColor: "#F3B63A", outline: 'none' }}
         onClick={handleClickOpen}
         endIcon={<AddBoxSharpIcon />}
       >
@@ -88,7 +88,7 @@ const EntryLead = () => {
                 >
                   {
                     categories.map((category) => (
-                      <MenuItem  value={category.categoryName} key={category._id}> {category.categoryName} </MenuItem>
+                      <MenuItem value={category.categoryName} key={category._id}> {category.categoryName} </MenuItem>
                     ))
                   }
                 </Select>

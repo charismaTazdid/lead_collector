@@ -20,7 +20,7 @@ export const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
   '& .MuiBackdrop-root': {
     backdropFilter: 'blur(8px)',
-    backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    backgroundColor: 'rgba(0, 0, 0, 0.7)'
   }
 }))
 

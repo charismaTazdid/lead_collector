@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react';
 import { Box, Pagination } from '@mui/material';
-// import { leads } from "../demoDb/leads";
 import SingleLead from './SingleLead';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllLead } from '../Actions/leadAction';
+import LoadingData from "./LoadingData.jsx";
 
 const ViewLeadBody = () => {
 
@@ -16,18 +16,23 @@ const ViewLeadBody = () => {
         dispatch(getAllLead())
     }, [])
 
+
+
+
     return (
-        <Box sx={{ border: "2px solid red", minHeight: "90vh", width: '100%', backgroundColor: "#EAF0F1", display: "flex", justifyContent: "center" }}>
+        <Box sx={{ minHeight: "90vh", width: '100%', backgroundColor: "#192A56", display: "flex", justifyContent: "center" }}>
             <Box>
+                {
+                    !leads.length && <LoadingData />
+                }
                 {
                     leads.map((lead, index) => (
                         <SingleLead lead={lead} key={index} />
                     ))
                 }
-                <Pagination count={100} variant="outlined" shape="rounded" />
+                <Pagination count={10} variant="outlined" shape="rounded" />
             </Box>
         </Box>
     )
 }
-
-export default ViewLeadBody
+export default ViewLeadBody;
