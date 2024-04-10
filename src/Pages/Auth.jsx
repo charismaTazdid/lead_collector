@@ -13,7 +13,7 @@ const Auth = () => {
   const [openAlert, setOpenAlert] = useState(false);
   const [isEmptyField, setIsEmptyField] = useState(false);
   const { isError, errorMessage } = useSelector(state => state.auth)
- 
+
   const [showPassword, setShowPassword] = useState(false)
   const [userData, setUserData] = useState({ userName: '', password: '' })
   function handleKeyDown(event) {
@@ -39,7 +39,7 @@ const Auth = () => {
     setShowPassword(!showPassword)
   }
   return (
-    <Box height={'100vh'} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center' }}>
+    <Box height={'100vh'} sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', backgroundImage: "linear-gradient(to right, #2F363F, #47535E)" }}>
 
       {isError && openAlert ? (
         <Box sx={{ minWidth: 350 }}>
@@ -88,7 +88,7 @@ const Auth = () => {
       )}
 
       <Paper
-        sx={{ px: 10, pt: 3, pb: 2, backgroundColor: '#DAE0E2' }}
+        sx={{ px: 10, pt: 3, pb: 2, backgroundColor: '#2C3335' }}
         elevation={15}
       >
         <Box sx={{ display: 'flex', justifyContent: 'center', mb: 5 }}>
@@ -99,20 +99,29 @@ const Auth = () => {
 
         <TextField
           label='User Name'
+          color='warning'
           name='userName'
           variant='standard'
-          focused
+          type='text'
           onClick={() => setOpenAlert(false)}
           onChange={e =>
             setUserData({ ...userData, [e.target.name]: e.target.value })
           }
           sx={{ width: 230, mb: 3 }}
+          InputProps={{
+            style: { color: 'white' }, // Set the text color to white
+            sx: { letterSpacing: '2px' }
+          }}
+          InputLabelProps={{
+            style: { color: 'orange' }
+          }}
         />
         <br />
         <TextField
           required
           label='Password'
           name='password'
+          color='warning'
           type={showPassword ? 'text' : 'password'}
           variant='standard'
           onClick={() => setOpenAlert(false)}
@@ -123,24 +132,29 @@ const Auth = () => {
           InputProps={{
             endAdornment: (
               <InputAdornment position='end'>
-                <IconButton onClick={handleTogglePassword} edge='end'>
+                <IconButton onClick={handleTogglePassword} edge='end' sx={{ '&:focus': { outline: 'none' } }}>
                   {showPassword ? (
-                    <VisibilityIcon color='inherit' />
+                    <VisibilityIcon color='warning' sx={{ outline: "none", border: "none" }} />
                   ) : (
-                    <VisibilityOffIcon color='inherit' />
+                    <VisibilityOffIcon color='warning' sx={{ outline: "none", border: "none" }} />
                   )}
                 </IconButton>
               </InputAdornment>
-            )
+            ),
+            style: { color: "white", }, // Set the text color to white
+            sx: { letterSpacing: '2px' }
+          }}
+          InputLabelProps={{
+            style: { color: 'orange' } // Set the label color to white
           }}
         />
         <br />
         <Box mt={4} mb={7} sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}  >
-          <Button id='login' variant='contained' fullWidth onClick={handleLogin} >
+          <Button id='login' color='warning' sx={{ outline: "none" }} variant='contained' fullWidth onClick={handleLogin} >
             Log In
           </Button>
 
-          <Button onClick={() => navigate("/create-lead")} variant='contained' color='secondary' sx={{ mt: 2 }}>
+          <Button onClick={() => navigate("/create-lead")} variant='contained' color='inherit' sx={{ mt: 2 }}>
             Get In
           </Button>
         </Box>
