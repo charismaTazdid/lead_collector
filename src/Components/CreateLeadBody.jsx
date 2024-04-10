@@ -1,6 +1,6 @@
 import { Box, Typography } from '@mui/material'
 import CreateCategory from './Modal/CreateCategory'
-import EntryLead from './Modal/EntryLead'
+import EntryLead from './Modal/EntryLead.jsx'
 
 const CreateLeadBody = () => {
   return (

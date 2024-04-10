@@ -7,7 +7,6 @@ const authReducer = (state = { authData: userData, isError: false, errorMessage:
     switch (action.type) {
         case LOGIN:
             localStorage.setItem('profile', JSON.stringify(action?.data))
-            console.log("login succefull")
             return { ...state, authData: action?.data };
         case LOGOUT:
             localStorage.clear();

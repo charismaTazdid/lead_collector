@@ -44,7 +44,7 @@ const MakeAdminModal = () => {
 
     return (
         <>
-            <Button sx={{ py: 1.3, mr: 2, mt: 1, width: "267px", fontWeight: 600, border: '1px solid #ED6C02' }} variant='outlined' color='warning' startIcon={<GroupAdd />} disableElevation onClick={handleClickOpen} >
+            <Button sx={{ py: 1.3, mr: 2, mt: 1, width: "267px", fontWeight: 600, border: '1px solid #ED6C02', }} variant='outlined' color='warning' startIcon={<GroupAdd />} disableElevation onClick={handleClickOpen} >
                 Add New Admin
             </Button>
 

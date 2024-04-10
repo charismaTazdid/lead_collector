@@ -4,9 +4,11 @@ import Alluser from '../Components/AllUser'
 
 const Dashboard = () => {
   return (
-    <Box>
+    <Box sx={{minHeight: "100vh", background: "linear-gradient(to right, #2C3335 0%, #2B2B52 100%)" }}>
       <Navbar />
-      <Alluser />
+      <Box mt={2}>
+        <Alluser />
+      </Box>
     </Box>
   )
 }

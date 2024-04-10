@@ -11,8 +11,8 @@ a product for Top Merketers
 </ul>
 
 
-to do
+to do:
 
-1. add new Admin => done
-2. pagination
-3. Filter Lead by Category
+1. pagination 
+2. Filter Lead by Category
+3. Loading component

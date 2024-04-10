@@ -23,7 +23,6 @@ export const Login = (userData, navigate, setOpenAlert) => async (dispatch) => {
     }
 };
 
-
 // Delete a system user
 export const deleteUser = (id) => async (dispatch) => {
     try {

@@ -154,9 +154,6 @@ const Auth = () => {
             Log In
           </Button>
 
-          <Button onClick={() => navigate("/create-lead")} variant='contained' color='inherit' sx={{ mt: 2 }}>
-            Get In
-          </Button>
         </Box>
 
         <Box

@@ -15,7 +15,7 @@ export const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1)
   },
   '& .MuiDialog-paper': {
-    width: 1000,
+    width: 800,
     maxWidth: 'none'
   },
   '& .MuiBackdrop-root': {

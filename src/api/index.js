@@ -1,7 +1,8 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "http://localhost:5000" });
-// const API = axios.create({ baseURL: "https://stmback.onrender.com" });
+// const API = axios.create({ baseURL: "http://localhost:5000" });
+const API = axios.create({ baseURL: "https://lead-collector-server.onrender.com" });
+
 
 API.interceptors.request.use((req) => {
     if (localStorage.getItem('profile')) {

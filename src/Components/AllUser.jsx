@@ -18,7 +18,7 @@ const Alluser = () => {
     }, []);
 
     return (
-        <Box sx={{ flexGrow: 1, width: "550px", mx: 2, py: 1, px: 2, backgroundColor: "white", borderRadius: 2 }}>
+        <Box sx={{ flexGrow: 1, width: "500px", mx: 2, py: 1, px: 2, backgroundColor: "white", borderRadius: 1 }}>
             <Box sx={{ mb: 2, width: "100%", display: "flex", justifyContent: "right" }}  >
                 {/* ADD New Admin */}
                 <MakeAdminModal />
@@ -33,7 +33,7 @@ const Alluser = () => {
                     <List >
                         {
                             systemUsers.map((user) => (
-                                < Box key={user._id} sx={{ width: "520px", }}>
+                                < Box key={user._id} sx={{ width: "470px", }}>
                                     <ListItem
                                         sx={{ backgroundColor: (userName === user.userName) && "#EFEFED", fontWeight: "bold" }}
                                         secondaryAction={
@@ -59,7 +59,7 @@ const Alluser = () => {
 
                                         <ListItemText
                                             primary={`${user?.userName}`}
-                                            secondary={"system user"}
+                                            secondary={"admin"}
                                             sx={{ color: (userName === user?.userName) && "#003049", textTransform: "capitalize" }}
                                         />
 

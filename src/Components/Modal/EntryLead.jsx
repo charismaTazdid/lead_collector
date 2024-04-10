@@ -33,7 +33,7 @@ const EntryLead = () => {
   const handleSaveLead = () => {
     const { companyName, website } = leadData;
     if (!companyName || !website) {
-      alert('দয়াকরে করে সব প্রয়োজনীয় ক্ষেত্রগুলি পূরণ করুন');
+      alert('Company Name, Category, Country and Website is Required');
       return
     }
     dispatch(createLead(leadData));
@@ -45,7 +45,7 @@ const EntryLead = () => {
   }, []);
 
   return (
-    <Box sx={{ minWidth: 900 }}>
+    <Box>
       <Button
         variant='outlined'
         sx={{ ml: 3, mt: 3, mb: 3, p: 1, px: 3, width: 350, height: 50, }}
@@ -72,18 +72,19 @@ const EntryLead = () => {
           <Box sx={{ display: "flex", justifyContent: "space-around" }}>
             <Box>
               <Typography> Company Name:</Typography>
-              <TextField onChange={(e) => setLeadData({ ...leadData, companyName: e.target.value })} color='success' sx={{ my: 1, width: 420 }} required variant='filled' />
+              <TextField onChange={(e) => setLeadData({ ...leadData, companyName: e.target.value })} color='success' sx={{ my: 1, width: 320 }} required variant='filled' />
             </Box>
 
             {/* Drop Down Menu */}
             <Box>
               <Typography>Select Category</Typography>
-              <FormControl sx={{ my: 1, width: 420, py: 1, }} size="medium" variant="filled">
+              <FormControl sx={{ my: 1, width: 320, py: 1, }} size='small' variant="filled">
                 <Select
                   labelId="demo-select-small-label"
                   id="demo-select-small"
                   value={leadData.categoryName}
                   label={leadData.categoryName}
+                  size='small'
                   onChange={(e) => setLeadData({ ...leadData, categoryName: e.target.value })}
                 >
                   {
@@ -99,37 +100,39 @@ const EntryLead = () => {
           <Box sx={{ display: "flex", justifyContent: "space-around" }}>
 
             <Box>
-              <TextField variant='filled' hiddenLabel label='Country' color='success' sx={{ my: 1, py: 1, width: 420 }} required onChange={(e) => setLeadData({ ...leadData, country: e.target.value })} />
+              <TextField variant='filled' label='Country' color='success' sx={{ my: 1, py: 1, width: 320 }} required onChange={(e) => setLeadData({ ...leadData, country: e.target.value })} size='small' />
             </Box>
+
+
             <Box>
-              <TextField variant='filled' label='Website Address' color='success' sx={{ my: 1, width: 420, py: 1, }} required onChange={(e) => setLeadData({ ...leadData, website: e.target.value })} />
+              <TextField variant='filled' label='Website Address' color='success' sx={{ my: 1, width: 320, py: 1, }} size='small' required onChange={(e) => setLeadData({ ...leadData, website: e.target.value })} />
             </Box>
           </Box>
 
           <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-            <TextField label='Primary Email' variant='filled' color='success' sx={{ my: 1, width: 420, py: 1, }} onChange={(e) => setLeadData({ ...leadData, primaryEmail: e.target.value })} />
-            <TextField label='Seconary Email (optional)' variant='filled' color='success' sx={{ my: 1, width: 420, py: 1, }} onChange={(e) => setLeadData({ ...leadData, secondaryEmail: e.target.value })} />
+            <TextField label='Primary Email' variant='filled' color='success' sx={{ my: 1, width: 320, py: 1, }} size='small' onChange={(e) => setLeadData({ ...leadData, primaryEmail: e.target.value })} />
+            <TextField label='Seconary Email (optional)' variant='filled' color='success' sx={{ my: 1, width: 320, py: 1, }} size='small' onChange={(e) => setLeadData({ ...leadData, secondaryEmail: e.target.value })} />
           </Box>
 
           {/* Phone */}
           <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-            <TextField label='Phone (optional)' color='success' fullWidth variant='filled' sx={{ my: 1, width: 420, py: 1, }} onChange={(e) => setLeadData({ ...leadData, phone: e.target.value })} />
+            <TextField label='Phone (optional)' color='success' fullWidth variant='filled' sx={{ my: 1, width: 320, py: 1, }} size='small' onChange={(e) => setLeadData({ ...leadData, phone: e.target.value })} />
 
-            <TextField label='Whatsapp (optional)' color='success' variant='filled' fullWidth sx={{ my: 1, width: 420, py: 1, }} onChange={(e) => setLeadData({ ...leadData, whatsApp: e.target.value })} />
+            <TextField label='Whatsapp (optional)' color='success' variant='filled' fullWidth sx={{ my: 1, width: 320, py: 1, }} size='small' onChange={(e) => setLeadData({ ...leadData, whatsApp: e.target.value })} />
           </Box>
 
           {/* Social Media */}
           <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-            <TextField label='Facebook/insta/twitter url (optional)' color='success' fullWidth variant='filled' sx={{ width: 420, py: 1, }} onChange={(e) => setLeadData({ ...leadData, socialUrl: e.target.value })} />
+            <TextField label='Facebook/insta/twitter url (optional)' color='success' fullWidth variant='filled' size='small' sx={{ width: 320, py: 1, }} onChange={(e) => setLeadData({ ...leadData, socialUrl: e.target.value })} />
 
-            <TextField label='Linkedin url (optional)' color='success' variant='filled' fullWidth sx={{ width: 420, py: 1, }} onChange={(e) => setLeadData({ ...leadData, linkedinUrl: e.target.value })} />
+            <TextField label='Linkedin url (optional)' color='success' variant='filled' fullWidth sx={{ width: 320, py: 1, }} size='small' onChange={(e) => setLeadData({ ...leadData, linkedinUrl: e.target.value })} />
           </Box>
 
           {/* Manager/ Employee */}
           <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-            <TextField label='Employee / Manager Name (if found)' color='success' fullWidth variant='filled' sx={{ width: 420, py: 1, }} onChange={(e) => setLeadData({ ...leadData, employee: e.target.value })} />
+            <TextField label='Employee / Manager Name (if found)' color='success' fullWidth variant='filled' size='small' sx={{ width: 320, py: 1, }} onChange={(e) => setLeadData({ ...leadData, employee: e.target.value })} />
 
-            <TextField label='Employee Social Link or Email (if found)' color='success' variant='filled' fullWidth sx={{ width: 420, py: 1, }} onChange={(e) => setLeadData({ ...leadData, employeeContact: e.target.value })} />
+            <TextField label='Employee Social Link or Email (if found)' color='success' variant='filled' fullWidth sx={{ width: 320, py: 1, }} onChange={(e) => setLeadData({ ...leadData, employeeContact: e.target.value })} />
           </Box>
 
           <Box sx={{ display: "flex", justifyContent: "space-around" }}>
