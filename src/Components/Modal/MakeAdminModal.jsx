@@ -6,7 +6,7 @@ import { GroupAdd } from '@mui/icons-material';
 import CancelIcon from '@mui/icons-material/Cancel';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
-import { createNewUser } from '../../Actions/SystemUserAction';
+import { createNewUser } from '../../Actions/AuthActions.js';
 
 const MakeAdminModal = () => {
 

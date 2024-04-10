@@ -5,7 +5,7 @@ const systemUsers = (state = { systemUsers: [] }, action) => {
     switch (action.type) {
 
         case CREATE_SYSTEM_USER:
-            return { ...state, systemUsers: [...state.systemUsers, action.payload] }
+            return { ...state, systemUsers: [...state.systemUsers, action.payload.data] }
 
         case GET_ALL_USER:
             return { ...state, systemUsers: action?.payload };

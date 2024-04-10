@@ -1,11 +1,12 @@
 import { Box } from '@mui/material'
 import Navbar from '../Components/Navbar'
+import Alluser from '../Components/AllUser'
 
 const Dashboard = () => {
   return (
     <Box>
       <Navbar />
-      <h2>I am Dashboard</h2>
+      <Alluser />
     </Box>
   )
 }

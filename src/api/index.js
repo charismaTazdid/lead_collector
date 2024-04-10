@@ -11,9 +11,11 @@ API.interceptors.request.use((req) => {
 });
 
 // AUTH
-export const createUser = () => API.post('/auth/createUser');
+export const createUser = (userData) => API.post('/auth/createUser', userData);
 export const login = (userData) => API.post("/auth/login", userData);
-export const getAllUser = () => API.get('/auth/getAllUser');
+export const getAllUser = () => API.get('/auth/getAllUser');  //system User
+export const deleteUser = (id) => API.delete(`/auth/deleteUser/${id}`);  //system User
+
 
 // Category
 export const createCategory = (categoryName) => API.post("/category/createCategory", { categoryName });
