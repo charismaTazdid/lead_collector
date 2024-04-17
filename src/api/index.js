@@ -1,7 +1,7 @@
 import axios from "axios";
 
-// const API = axios.create({ baseURL: "http://localhost:5000" });
-const API = axios.create({ baseURL: "https://lead-collector-server.onrender.com" });
+const API = axios.create({ baseURL: "http://localhost:5000" });
+// const API = axios.create({ baseURL: "https://lead-collector-server.onrender.com" });
 
 
 API.interceptors.request.use((req) => {
@@ -26,3 +26,4 @@ export const getAllCategory = () => API.get("/category/getAllCategory");
 // Leads
 export const createLead = (leadData) => API.post("/lead/createLead", leadData);
 export const getAllLead = () => API.get("/lead/getAllLead");
+export const getLeadByCategory = (categoryName) => API.get("")
