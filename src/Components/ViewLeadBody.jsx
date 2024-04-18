@@ -1,18 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Pagination, Button, Typography } from '@mui/material';
+import { Box, Pagination, Button, Typography, Stack, PaginationItem } from '@mui/material';
 import SingleLead from './SingleLead';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllLead } from '../Actions/leadAction';
 import LoadingData from "./LoadingData.jsx";
 import { getAllCategory } from '../Actions/categoryAction.js';
 import jwt_decode from "jwt-decode";
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+
 
 const ViewLeadBody = () => {
     const userData = JSON.parse(localStorage.getItem('profile'));
     const { userName, role } = jwt_decode(userData.token);
 
     const [page, setPage] = useState(1); // Track current page
-    const leadsPerPage = 5; // Number of leads per page
+    const leadsPerPage = 4; // Number of leads per page
 
     const { leads } = useSelector((state) => state.leads);
     const { categories } = useSelector((state) => state.categories);
@@ -51,10 +54,34 @@ const ViewLeadBody = () => {
                 </Box>
                 {
                     currentLeads.map((lead, index) => (
-                        <SingleLead lead={lead} role={role} key={index}  />
+                        <SingleLead lead={lead} role={role} key={index} />
                     ))
                 }
-                <Pagination count={Math.ceil(leads.length / leadsPerPage)} variant="outlined" shape="rounded" page={page} onChange={handlePageChange} />
+                <Stack spacing={2} mb={3} mt={1}>
+                    <Pagination
+                        count={Math.ceil(leads.length / leadsPerPage)}
+                        page={page}
+                        onChange={handlePageChange}
+                        renderItem={(item) => (
+                            <PaginationItem
+                                slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
+                                style={{ outline: "none" }}
+                                sx={{
+                                    backgroundColor:  '#F3B431',
+                                    fontWeight: item.selected && 900,
+                                    color: item.selected ? 'white' : 'black',
+                                    '&:hover': {
+                                        backgroundColor: 'white',
+                                        color: item.selected && 'red'
+                                    },
+                                }}
+                                {...item}
+                            />
+                        )}
+                    />
+
+                </Stack>
+
             </Box>
         </Box>
     );

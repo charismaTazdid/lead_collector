@@ -69,25 +69,28 @@ const SingleLead = ({ lead, role }) => {
                                     />
                                 </Box>
                             </Box>
-                            <Box sx={{ display: "flex", width: 450 }}>
-                                <Typography sx={{ mr: 2, fontWeight: "bold", fontSize: 14 }}>Secondary Email: </Typography>
-                                <Typography fontSize={14} > {lead?.secondaryEmail} </Typography>
-                                <Box sx={{ display: "flex", alignItems: "center", ml: 1 }}>
-                                    <ContentCopyTwoToneIcon
-                                        fontSize='small'
-                                        onClick={() => handleCopy(lead?.secondaryEmail)}
-                                        sx={{
-                                            cursor: "pointer",
-                                            color: "#192A56",
-                                            '&:hover': {
-                                                color: 'green',
-                                                scale: "1.1",
-                                                backgroundColor: 'inherit',
-                                            }
-                                        }}
-                                    />
+                            {
+                                lead.secondaryEmail &&
+                                <Box sx={{ display: "flex", width: 450 }}>
+                                    <Typography sx={{ mr: 2, fontWeight: "bold", fontSize: 14 }}>Secondary Email: </Typography>
+                                    <Typography fontSize={14} > {lead?.secondaryEmail} </Typography>
+                                    <Box sx={{ display: "flex", alignItems: "center", ml: 1 }}>
+                                        <ContentCopyTwoToneIcon
+                                            fontSize='small'
+                                            onClick={() => handleCopy(lead?.secondaryEmail)}
+                                            sx={{
+                                                cursor: "pointer",
+                                                color: "#192A56",
+                                                '&:hover': {
+                                                    color: 'green',
+                                                    scale: "1.1",
+                                                    backgroundColor: 'inherit',
+                                                }
+                                            }}
+                                        />
+                                    </Box>
                                 </Box>
-                            </Box>
+                            }
                         </Box>
                         :
                         <></>
@@ -116,25 +119,28 @@ const SingleLead = ({ lead, role }) => {
                                     />
                                 </Box>
                             </Box>
-                            <Box sx={{ display: "flex", width: 450 }}>
-                                <Typography sx={{ mr: 2, fontWeight: "bold", fontSize: 14 }}>WhatsApp : </Typography>
-                                <Typography fontSize={14}> {lead?.whatsApp} </Typography>
-                                <Box sx={{ display: "flex", alignItems: "center", ml: 1 }}>
-                                    <ContentCopyTwoToneIcon
-                                        fontSize='small'
-                                        onClick={() => handleCopy(lead?.whatsApp)}
-                                        sx={{
-                                            cursor: "pointer",
-                                            color: "#192A56",
-                                            '&:hover': {
-                                                color: 'green',
-                                                scale: "1.1",
-                                                backgroundColor: 'inherit',
-                                            }
-                                        }}
-                                    />
+                            {
+                                lead.whatsApp &&
+                                <Box sx={{ display: "flex", width: 450 }}>
+                                    <Typography sx={{ mr: 2, fontWeight: "bold", fontSize: 14 }}>WhatsApp : </Typography>
+                                    <Typography fontSize={14}> {lead?.whatsApp} </Typography>
+                                    <Box sx={{ display: "flex", alignItems: "center", ml: 1 }}>
+                                        <ContentCopyTwoToneIcon
+                                            fontSize='small'
+                                            onClick={() => handleCopy(lead?.whatsApp)}
+                                            sx={{
+                                                cursor: "pointer",
+                                                color: "#192A56",
+                                                '&:hover': {
+                                                    color: 'green',
+                                                    scale: "1.1",
+                                                    backgroundColor: 'inherit',
+                                                }
+                                            }}
+                                        />
+                                    </Box>
                                 </Box>
-                            </Box>
+                            }
 
                         </Box>
                         :
@@ -149,10 +155,13 @@ const SingleLead = ({ lead, role }) => {
                                 <Typography sx={{ mr: 2, fontWeight: "bold", fontSize: 14 }}> Social Url: </Typography>
                                 <Typography fontSize={14}> {lead?.socialUrl} </Typography>
                             </Box>
-                            <Box sx={{ display: "flex", width: 450, flexWrap: "wrap" }}>
-                                <Typography sx={{ mr: 2, fontWeight: "bold", fontSize: 14 }}>Linkedin Url: </Typography>
-                                <Typography fontSize={14}> {lead?.linkedinUrl} </Typography>
-                            </Box>
+                            {
+                                lead.linkedinUrl &&
+                                <Box sx={{ display: "flex", width: 450, flexWrap: "wrap" }}>
+                                    <Typography sx={{ mr: 2, fontWeight: "bold", fontSize: 14 }}>Linkedin Url: </Typography>
+                                    <Typography fontSize={14}> {lead?.linkedinUrl} </Typography>
+                                </Box>
+                            }
                         </Box>
                         :
                         <></>
@@ -169,10 +178,13 @@ const SingleLead = ({ lead, role }) => {
                                     <Typography sx={{ mr: 2, fontWeight: "bold", fontSize: 14 }}>Employee: </Typography>
                                     <Typography fontSize={14}> {lead?.employee} </Typography>
                                 </Box>
-                                <Box sx={{ display: "flex", width: 450 }}>
-                                    <Typography sx={{ mr: 2, fontWeight: "bold", fontSize: 14 }}>Employee contact: </Typography>
-                                    <Typography fontSize={14}> {lead?.employeeContact} </Typography>
-                                </Box>
+                                {
+                                    lead.employeeContact &&
+                                    <Box sx={{ display: "flex", width: 450 }}>
+                                        <Typography sx={{ mr: 2, fontWeight: "bold", fontSize: 14 }}>Employee contact: </Typography>
+                                        <Typography fontSize={14}> {lead?.employeeContact} </Typography>
+                                    </Box>
+                                }
                             </Box>
                         </Box>
                         :
@@ -181,13 +193,10 @@ const SingleLead = ({ lead, role }) => {
 
                 <Box display="flex">
                     {/* Others Information */}
-                    {
-                        lead.othersInfo &&
                         <Box sx={{ display: "flex", flexWrap: 'wrap', mt: 1 }}>
                             <Typography sx={{ mr: 2, fontWeight: "bold", fontSize: 14 }}>Others Info : </Typography>
                             <Typography fontSize={14} fontWeight={700} sx={{ color: "#AE1438" }}> {lead?.othersInfo} </Typography>
                         </Box>
-                    }
                     {
                         role === "superAdmin" &&
                         <DeleteLeadModal id={lead._id} companyName={lead.companyName} />
