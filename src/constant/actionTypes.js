@@ -16,6 +16,7 @@ export const FETCH_ALL_CATEGORY = 'FETCH_ALL_CATEGORY';
 // FOR LEAD
 export const CREATE_LEAD = "CREATE_LEAD";
 export const GET_ALL_LEAD = "GET_ALL_LEAD";
+export const DELETE_LEAD = "DELETE_LEAD";
 
 
 // FOR PRODUCT

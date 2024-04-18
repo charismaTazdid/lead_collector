@@ -26,4 +26,5 @@ export const getAllCategory = () => API.get("/category/getAllCategory");
 // Leads
 export const createLead = (leadData) => API.post("/lead/createLead", leadData);
 export const getAllLead = () => API.get("/lead/getAllLead");
-export const getLeadByCategory = (categoryName) => API.get("")
+export const getLeadByCategory = (categoryName) => API.get("");
+export const deleteLead = (id) => API.delete(`/lead/deleteLead/${id}`);

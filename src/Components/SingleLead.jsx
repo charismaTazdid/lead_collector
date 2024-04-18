@@ -2,6 +2,7 @@ import { Box, Button, Paper, Typography } from '@mui/material';
 import React, { useState } from 'react'
 import ContentCopyTwoToneIcon from '@mui/icons-material/ContentCopyTwoTone';
 import DeleteIcon from '@mui/icons-material/Delete';
+import DeleteLeadModal from './Modal/DeleteLeadModal';
 
 const SingleLead = ({ lead, role }) => {
     const [copied, setCopied] = useState(false);
@@ -92,7 +93,6 @@ const SingleLead = ({ lead, role }) => {
                         <></>
                 }
 
-
                 {/* Phone and WhatsApp */}
                 {
                     lead.phone || lead.whatsApp ?
@@ -141,7 +141,6 @@ const SingleLead = ({ lead, role }) => {
                         <> </>
                 }
 
-
                 {/* Social Media  */}
                 {
                     lead.socialUrl || lead.linkedinUrl ?
@@ -181,29 +180,21 @@ const SingleLead = ({ lead, role }) => {
                 }
 
                 <Box display="flex">
-
-
                     {/* Others Information */}
                     {
                         lead.othersInfo &&
                         <Box sx={{ display: "flex", flexWrap: 'wrap', mt: 1 }}>
                             <Typography sx={{ mr: 2, fontWeight: "bold", fontSize: 14 }}>Others Info : </Typography>
                             <Typography fontSize={14} fontWeight={700} sx={{ color: "#AE1438" }}> {lead?.othersInfo} </Typography>
-
-
-
-
                         </Box>
                     }
                     {
                         role === "superAdmin" &&
-                        <DeleteIcon fontSize='small' color='error' sx={{ cursor: "pointer" }} />
+                        <DeleteLeadModal id={lead._id} companyName={lead.companyName} />
                     }
                 </Box>
-
             </Box>
         </Paper>
     )
 }
-
 export default SingleLead;
