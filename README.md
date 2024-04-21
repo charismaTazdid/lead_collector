@@ -13,6 +13,6 @@ a product for Top Merketers
 
 to do:
 
-1. pagination 
+1. pagination => done
 2. Filter Lead by Category
-3. Loading component
+3. Loading component => done
