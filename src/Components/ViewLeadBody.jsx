@@ -36,6 +36,15 @@ const ViewLeadBody = () => {
         setPage(value); // Update current page
     };
 
+    const handleFilterdByCategory = (categoryName) => {
+        // console.log(categoryName)
+        if (categoryName === "All") {
+            console.log(leads)
+        }
+        const filterdLeads = leads.filter((lead) => lead.categoryName === categoryName);
+        // console.log(filterdLeads)
+    };
+
     return (
         <Box sx={{ minHeight: "90vh", width: '100%', backgroundColor: "#192A56", display: "flex", justifyContent: "center" }}>
             <Box>
@@ -47,7 +56,12 @@ const ViewLeadBody = () => {
                     {
                         categories.map((category) => (
                             <Box key={category._id} m={1}>
-                                <Button variant='outlined' color='warning' onClick={() => alert("Features coming soon")}> {category.categoryName} </Button>
+                                <Button
+                                    variant='outlined'
+                                    color='warning'
+                                    onClick={() => handleFilterdByCategory(category.categoryName)}>
+                                    {category.categoryName}
+                                </Button>
                             </Box>
                         ))
                     }
@@ -67,7 +81,7 @@ const ViewLeadBody = () => {
                                 slots={{ previous: ArrowBackIcon, next: ArrowForwardIcon }}
                                 style={{ outline: "none" }}
                                 sx={{
-                                    backgroundColor:  '#F3B431',
+                                    backgroundColor: '#F3B431',
                                     fontWeight: item.selected && 900,
                                     color: item.selected ? 'white' : 'black',
                                     '&:hover': {
@@ -79,9 +93,7 @@ const ViewLeadBody = () => {
                             />
                         )}
                     />
-
                 </Stack>
-
             </Box>
         </Box>
     );
