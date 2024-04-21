@@ -9,41 +9,56 @@ import jwt_decode from "jwt-decode";
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 
-
 const ViewLeadBody = () => {
+
+    const dispatch = useDispatch();
     const userData = JSON.parse(localStorage.getItem('profile'));
     const { userName, role } = jwt_decode(userData.token);
-
-    const [page, setPage] = useState(1); // Track current page
-    const leadsPerPage = 4; // Number of leads per page
 
     const { leads } = useSelector((state) => state.leads);
     const { categories } = useSelector((state) => state.categories);
 
-    const dispatch = useDispatch();
+    const [searchCategory, setSearchCategory] = useState("");
+    const [currentLeads, setCurrentLeads] = useState(leads);
+    const [page, setPage] = useState(1); // Track current page
+    const leadsPerPage = 4; // Number of leads per page
+
+    // Calculate the range of leads to display for the current page
+    const startIndex = (page - 1) * leadsPerPage;
+    const endIndex = startIndex + leadsPerPage;
+    const displayLeads = currentLeads.slice(startIndex, endIndex);
 
     useEffect(() => {
         dispatch(getAllLead());
         dispatch(getAllCategory());
     }, []);
 
-    // Calculate the range of leads to display for the current page
-    const startIndex = (page - 1) * leadsPerPage;
-    const endIndex = startIndex + leadsPerPage;
-    const currentLeads = leads.slice(startIndex, endIndex);
-
     const handlePageChange = (event, value) => {
         setPage(value); // Update current page
     };
 
-    const handleFilterdByCategory = (categoryName) => {
-        // console.log(categoryName)
-        if (categoryName === "All") {
-            console.log(leads)
+    const handleFilterdByCategory = () => {
+
+        if (searchCategory === "All") {
+            // retrun the all lead data
+            return setCurrentLeads(leads);
         }
-        const filterdLeads = leads.filter((lead) => lead.categoryName === categoryName);
-        // console.log(filterdLeads)
+        else {
+            const filterdLeads = leads.filter((lead) => lead.categoryName === searchCategory);
+            return setCurrentLeads(filterdLeads)
+        }
     };
+
+    useEffect(() => {
+        handleFilterdByCategory()
+    }, [searchCategory]);
+
+    // to avoid realoding page result = empty currentLeads
+    useEffect(() => {
+        setTimeout(() => {
+            setSearchCategory("All")
+        }, 200);
+    }, [])
 
     return (
         <Box sx={{ minHeight: "90vh", width: '100%', backgroundColor: "#192A56", display: "flex", justifyContent: "center" }}>
@@ -59,7 +74,14 @@ const ViewLeadBody = () => {
                                 <Button
                                     variant='outlined'
                                     color='warning'
-                                    onClick={() => handleFilterdByCategory(category.categoryName)}>
+                                    sx={{
+                                        borderColor: searchCategory === category.categoryName && "white", color: searchCategory === category.categoryName && "white",
+                                        ':hover&': { color: "white" }
+
+                                    }}
+                                    style={{ outline: "none" }}
+                                    onClick={() => setSearchCategory(category.categoryName)}
+                                >
                                     {category.categoryName}
                                 </Button>
                             </Box>
@@ -67,13 +89,13 @@ const ViewLeadBody = () => {
                     }
                 </Box>
                 {
-                    currentLeads.map((lead, index) => (
+                    displayLeads.map((lead, index) => (
                         <SingleLead lead={lead} role={role} key={index} />
                     ))
                 }
                 <Stack spacing={2} mb={3} mt={1}>
                     <Pagination
-                        count={Math.ceil(leads.length / leadsPerPage)}
+                        count={Math.ceil(currentLeads.length / leadsPerPage)}
                         page={page}
                         onChange={handlePageChange}
                         renderItem={(item) => (
